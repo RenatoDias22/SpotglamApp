@@ -14,6 +14,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
     public void clickCadastrar(View v){
         Intent intent = new Intent(this, CadastrarActivity.class);
         startActivity(intent);

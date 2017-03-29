@@ -10,4 +10,9 @@ public class CadastrarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }

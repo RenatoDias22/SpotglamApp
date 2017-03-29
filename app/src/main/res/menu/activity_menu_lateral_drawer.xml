@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_map"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Mapa" />
+        <item
+            android:id="@+id/pecas"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Nossas Peças" />
+        <item
+            android:id="@+id/promocoes"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Promoções" />
+        <item
+            android:id="@+id/updates"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Updates" />
+        <item
+            android:id="@+id/sobre"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Sobre" />
+        <item
+            android:id="@+id/contato"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Contato" />
+        <item
+            android:id="@+id/ajuda"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Ajuda" />
+        <item
+            android:id="@+id/conta"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Conta" />
+
+    </group>
+
+    <item android:title="Sair do app">
+        <menu>
+            <!--<item-->
+                <!--android:id="@+id/nav_share"-->
+                <!--android:icon="@drawable/ic_menu_share"-->
+                <!--android:title="Share" />-->
+            <!--<item-->
+                <!--android:id="@+id/nav_send"-->
+                <!--android:icon="@drawable/ic_menu_send"-->
+                <!--android:title="Send" />-->
+
+            <item
+                android:id="@+id/sair"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Sair" />
+        </menu>
+    </item>
+
+</menu>
