@@ -22,9 +22,12 @@ import com.example.renato.spotglamapp.activitys.menu.Pecas.PecasFragment;
 import com.example.renato.spotglamapp.activitys.menu.Promocao.PromocaoFragment;
 import com.example.renato.spotglamapp.activitys.menu.Sobre.SobreFragment;
 import com.example.renato.spotglamapp.activitys.menu.Updates.UpdatesFragment;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MenuLateralActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class MenuLateralActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         FragmentManager fragmantManager = getSupportFragmentManager();
         fragmantManager.beginTransaction().replace(R.id.contenedor, new MapsActivity()).commit();
+        auth = FirebaseAuth.getInstance();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -43,6 +47,7 @@ public class MenuLateralActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     @Override
@@ -102,6 +107,7 @@ public class MenuLateralActivity extends AppCompatActivity
         } else if (id == R.id.conta) {
             fragmantManager.beginTransaction().replace(R.id.contenedor, new ContaFragment()).commit();
         } else if (id == R.id.sair) {
+            auth.signOut();
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
