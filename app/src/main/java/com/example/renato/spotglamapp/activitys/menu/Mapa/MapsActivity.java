@@ -1,42 +1,63 @@
 package com.example.renato.spotglamapp.activitys.menu.Mapa;
 
+import android.Manifest;
+import android.content.SyncStatusObserver;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.renato.spotglamapp.R;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
+
+class Ponto {
+    private LatLng latLng;
+    private String titulo;
+
+    public Ponto(LatLng latLng, String titulo) {
+        this.latLng = latLng;
+        this.titulo = titulo;
+    }
+    LatLng getLatLng(){
+        return this.latLng;
+    }
+    String getTitulo(){
+        return this.titulo;
+    }
+}
 public class MapsActivity extends Fragment implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private SupportMapFragment supportMapFragment;
     private int typeMap;
     private View rootView;
+
+
+    private ArrayList<Ponto> pontos = new ArrayList<Ponto>();
+    private LocationManager locationManager;
+    private LocationListener listener;
+    private double latitude;
+    private double longitude;
 
     public static MapsActivity newInstance(int typeMap) {
         MapsActivity fragment = new MapsActivity();
@@ -48,6 +69,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
 
     public MapsActivity() {
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,94 +85,75 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         supportMapFragment = SupportMapFragment.newInstance();
         rootView = inflater.inflate(R.layout.activity_maps, null);
         FragmentManager fragmentManager = getFragmentManager();
+
+        LocationManager lm = (LocationManager) getActivity().getSystemService(getContext().LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return rootView;
+        }
+//        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, (android.location.LocationListener) this);
+
         if (fragmentManager != null) {
             fragmentManager.beginTransaction().replace(R.id.map, supportMapFragment).commitAllowingStateLoss();
         }
         supportMapFragment.getMapAsync(this);
+
         return rootView;
     }
 
+    private void addPontos() {
+        pontos.add(new Ponto(new LatLng(-3.7688874, -38.4816098), "UNIFOR"));
+        pontos.add(new Ponto(new LatLng(-3.7213003, -38.5202098), "Dragão do Mar"));
+        pontos.add(new Ponto(new LatLng(-3.755851, -38.4889458), "Iguatemi"));
+        pontos.add(new Ponto(new LatLng(-3.7192433, -38.516688), "Ponte dos Ingleses"));
+        pontos.add(new Ponto(new LatLng(-3.8072834, -38.5224331), "Castelão"));
+        pontos.add(new Ponto(new LatLng(-3.8641382,-38.5062965), "Trem da Alegria"));
+        pontos.add(new Ponto(new LatLng(-3.8438588,-38.3904518), "Beach Park"));
+        pontos.add(new Ponto(new LatLng(-3.722848,-38.5251113), "Fortaleza de Nossa Sra. da Assunção"));
+        pontos.add(new Ponto(new LatLng(-3.7523768,-38.5264899), "Santuário Nossa Senhora de Fátima"));
+        pontos.add(new Ponto(new LatLng(-3.8361877,-38.5546062), "Black Gate"));
+    }
+
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
-//        switch (typeMap) {
-//            case MainActivity.TYPE_MAP_BASIC:
-//                configBasicMap(googleMap);
-//                break;
-//            case MainActivity.TYPE_MAP_CUSTOM_MARKER:
-//                configCustomMarkerMap(googleMap);
-//                break;
-//        }
-    }
+        addPontos();
+        LatLng fortaleza = new LatLng(-3.7282066, -38.5361633);
 
-    private void configBasicMap(GoogleMap googleMap) {
-        LatLng sydney = new LatLng(-33.867, 151.206); //Cria uma coordenada de ponto para o mapa
-        //Configura o zoom da camera do mapa
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
+        googleMap.addMarker(new MarkerOptions().position(fortaleza)
+                .title("Fortaleza"));
 
-        /**
-         * Adiciona um pino na posição da coordenada.
-         * Ao clicar em cima do pino exibirá o título Sidney e a descrição que está no snippet
-         */
-        googleMap.addMarker(new MarkerOptions()
-                .title("Sydney")
-                .snippet("Cidade mais populosa da Austrália.")
-                .position(sydney));
-    }
+        for (Ponto ponto: pontos) {
+            googleMap.addMarker(new MarkerOptions().position(ponto.getLatLng())
+                    .title(ponto.getTitulo()));
+        }
+        CameraUpdate zoom = CameraUpdateFactory.zoomTo(10);
 
-    private void configCustomMarkerMap(GoogleMap googleMap) {
-        LatLng sydney = new LatLng(-33.867, 151.206);
-        //Exibi o botão de localizar a localização do usuário
-//        googleMap.setMyLocationEnabled(true);
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 10));
-        MarkerOptions markerOptions = new MarkerOptions();
-        /**
-         * O arquivo de imagem pin48.png deve estar presente dentro da pasta mipmap-mdpi
-         * Caso esteja usando uma versão mais antiga do Android Studio e do SDK,
-         * você pode ter somente as pastas drawable. Nesse caso, cole dentro de drawable-mdpi
-         * e altere a linha markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.pin48))
-         * para markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin48))
-         */
-        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher_round))
-                .anchor(0.0f, 1.0f) //Posiciona o pino um pouco mais pra cima
-                .position(sydney)
-                .title("Sydney");
-        googleMap.addMarker(markerOptions);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(fortaleza));
+        googleMap.animateCamera(zoom);
+
     }
 
 //    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.activity_maps, container, false);
+//    public void onLocationChanged(Location location) {
+////        latitude = location.getLatitude();
+////        longitude = location.getLongitude();
+////        System.out.println("onLocationChanged");
+////        System.out.println(latitude);
+////        System.out.println(longitude);
 //    }
-
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_maps);
-//        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-//                .findFragmentById(R.id.map);
-//        mapFragment.getMapAsync(this);
-//    }
-
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
-//    @Override
-//    public void onMapReady(GoogleMap googleMap) {
-//        mMap = googleMap;
 //
-//        // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+//    @Override
+//    public void onStatusChanged(String provider, int status, Bundle extras) {
+//
+//    }
+//
+//    @Override
+//    public void onProviderEnabled(String provider) {
+//
+//    }
+//
+//    @Override
+//    public void onProviderDisabled(String provider) {
+//
 //    }
 }
