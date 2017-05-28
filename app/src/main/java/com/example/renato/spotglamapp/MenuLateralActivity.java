@@ -87,8 +87,6 @@ public class MenuLateralActivity extends AppCompatActivity
 
         if (id == R.id.menu_map) {
             fragmantManager.beginTransaction().replace(R.id.contenedor, new MapsActivity()).commit();
-//            Intent intent = new Intent(this, MapsActivity.class);
-//            startActivity(intent);
         }else if (id == R.id.pecas) {
             fragmantManager.beginTransaction().replace(R.id.contenedor, new PecasFragment()).commit();
         } else if (id == R.id.promocoes) {

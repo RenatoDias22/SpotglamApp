@@ -90,7 +90,6 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return rootView;
         }
-//        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, (android.location.LocationListener) this);
 
         if (fragmentManager != null) {
             fragmentManager.beginTransaction().replace(R.id.map, supportMapFragment).commitAllowingStateLoss();
