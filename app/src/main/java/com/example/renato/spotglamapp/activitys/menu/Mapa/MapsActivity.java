@@ -133,27 +133,4 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
 
     }
 
-//    @Override
-//    public void onLocationChanged(Location location) {
-////        latitude = location.getLatitude();
-////        longitude = location.getLongitude();
-////        System.out.println("onLocationChanged");
-////        System.out.println(latitude);
-////        System.out.println(longitude);
-//    }
-//
-//    @Override
-//    public void onStatusChanged(String provider, int status, Bundle extras) {
-//
-//    }
-//
-//    @Override
-//    public void onProviderEnabled(String provider) {
-//
-//    }
-//
-//    @Override
-//    public void onProviderDisabled(String provider) {
-//
-//    }
 }
