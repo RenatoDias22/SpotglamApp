@@ -2,8 +2,8 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="rosinha">#FFACB1</color>
+    <color name="colorAccent">#ff4081</color>
+    <color name="rosinha">#ffacb1</color>
     <color name="branco">#FFFFFF</color>
     <color name="cinzaAppPadrao">#A1A1A1</color>
     <color name="bordas">#B5B5B5</color>

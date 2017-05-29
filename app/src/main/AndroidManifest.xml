@@ -15,13 +15,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".splash.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".CadastrarActivity" />
         <activity
@@ -40,17 +41,18 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
+        <Fragment
             android:name=".activitys.menu.Mapa.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".activitys.menu.Ajuda.AjudaActivity" />
-        <activity android:name=".activitys.menu.Conta.ContaActivity" />
-        <activity android:name=".activitys.menu.Contato.ContatoActivity" />
-        <activity android:name=".activitys.menu.Pecas.PecasActivity" />
-        <activity android:name=".activitys.menu.Promocao.PromocaoActivity" />
-        <activity android:name=".activitys.menu.Sobre.Sobre2Activity" />
-        <activity android:name=".activitys.menu.Sobre.SobreActivity" />
-        <activity android:name=".activitys.menu.Updates.UpdatesActivity"></activity>
+        <Fragment android:name=".activitys.menu.Ajuda.AjudaFragment" />
+        <Fragment android:name=".activitys.menu.Conta.ContaFragment" />
+        <Fragment android:name=".activitys.menu.Contato.ContatoFragment" />
+        <Fragment android:name=".activitys.menu.Pecas.PecasFragment" />
+        <Fragment android:name=".activitys.menu.Promocao.PromocaoFragment" />
+        <Fragment android:name=".activitys.menu.Sobre.Sobre2Fragment" />
+        <Fragment android:name=".activitys.menu.Sobre.SobreFragment" />
+        <Fragment android:name=".activitys.menu.Updates.UpdatesFragment" />
+
     </application>
 
 </manifest>

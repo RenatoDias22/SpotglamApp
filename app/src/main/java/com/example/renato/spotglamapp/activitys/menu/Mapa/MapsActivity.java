@@ -118,14 +118,14 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         addPontos();
         LatLng fortaleza = new LatLng(-3.7282066, -38.5361633);
 
-        googleMap.addMarker(new MarkerOptions().position(fortaleza)
+        googleMap.addMarker(new MarkerOptions().position(fortaleza).icon(BitmapDescriptorFactory.fromResource(R.mipmap.spot))
                 .title("Fortaleza"));
 
         for (Ponto ponto: pontos) {
-            googleMap.addMarker(new MarkerOptions().position(ponto.getLatLng())
+            googleMap.addMarker(new MarkerOptions().position(ponto.getLatLng()).icon(BitmapDescriptorFactory.fromResource(R.mipmap.spot))
                     .title(ponto.getTitulo()));
         }
-        CameraUpdate zoom = CameraUpdateFactory.zoomTo(10);
+        CameraUpdate zoom = CameraUpdateFactory.zoomTo(5);
 
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(fortaleza));
         googleMap.animateCamera(zoom);
