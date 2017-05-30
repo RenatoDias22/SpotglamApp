@@ -17,4 +17,9 @@ public class PecasFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_pecas, container, false);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
 }
