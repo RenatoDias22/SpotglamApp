@@ -9,6 +9,54 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="CONTA" />
+        android:text="Redefinir Senha"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:textAlignment="center"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/relativeNovaSenha"
+        android:layout_marginTop="120dp">
+
+        <EditText
+            android:id="@+id/novaSenha"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:lineSpacingExtra="18sp"
+            android:hint="DIGITE NOVA SENHA"
+            android:textColor="@color/cinzaAppPadrao"
+            android:theme="@style/EditTextLogin"
+            android:layout_marginTop="20dp"/>
+        <EditText
+            android:id="@+id/confirmarNovaSenha"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:lineSpacingExtra="18sp"
+            android:layout_below="@+id/novaSenha"
+            android:hint="CONFIRMAR SENHA"
+            android:textColor="@color/cinzaAppPadrao"
+            android:theme="@style/EditTextLogin"
+            android:layout_marginTop="10dp"/>
+
+        <Button
+            android:id="@+id/confirmarButton"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:text="Alterar"
+            android:layout_marginTop="160dp"
+            android:layout_below="@+id/confirmarNovaSenha"
+            android:backgroundTint="@color/rosinha"
+            android:background="@drawable/mybutton"
+            android:textColor="@color/branco"
+            android:onClick="confirmarButton"
+            />
+        />
+
+    </RelativeLayout>
 
 </FrameLayout>

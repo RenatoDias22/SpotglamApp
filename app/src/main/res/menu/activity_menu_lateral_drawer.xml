@@ -14,18 +14,18 @@
             android:id="@+id/promocoes"
             android:icon="@drawable/promocao"
             android:title="Promoções" />
-        <item
-            android:id="@+id/updates"
-            android:icon="@drawable/update"
-            android:title="Updates" />
+        <!--<item-->
+            <!--android:id="@+id/updates"-->
+            <!--android:icon="@drawable/update"-->
+            <!--android:title="Updates" />-->
         <item
             android:id="@+id/sobre"
             android:icon="@drawable/sobre"
             android:title="Sobre" />
-        <item
-            android:id="@+id/contato"
-            android:icon="@drawable/contato"
-            android:title="Contato" />
+        <!--<item-->
+            <!--android:id="@+id/contato"-->
+            <!--android:icon="@drawable/contato"-->
+            <!--android:title="Contato" />-->
         <item
             android:id="@+id/ajuda"
             android:icon="@drawable/ajuda"

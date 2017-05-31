@@ -46,9 +46,6 @@ public class CadastrarActivity extends AppCompatActivity {
         String email = login.getText().toString().trim();
         String password = senha.getText().toString().trim();
 
-        System.out.print("EMAIL: " + email);
-        System.out.print("SENHA: " + password);
-
         if (email.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
             return;

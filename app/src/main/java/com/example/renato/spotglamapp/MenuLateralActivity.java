@@ -86,20 +86,17 @@ public class MenuLateralActivity extends AppCompatActivity
         FragmentManager fragmantManager = getSupportFragmentManager();
         int id = item.getItemId();
 
-
+        this.getFragmentManager().popBackStack();
         if (id == R.id.menu_map) {
             fragmantManager.beginTransaction().replace(R.id.contenedor, new MapsActivity()).commit();
         }else if (id == R.id.pecas) {
             fragmantManager.beginTransaction().replace(R.id.contenedor, new PecasFragment()).commit();
         } else if (id == R.id.promocoes) {
+//            fragmantManager.isDestroyed();
             fragmantManager.beginTransaction().replace(R.id.contenedor, new PromocaoFragment()).commit();
-        } else if (id == R.id.updates) {
-            fragmantManager.beginTransaction().replace(R.id.contenedor, new UpdatesFragment()).commit();
         } else if (id == R.id.sobre) {
             fragmantManager.beginTransaction().replace(R.id.contenedor, new SobreFragment()).commit();
-        } else if (id == R.id.contato) {
-            fragmantManager.beginTransaction().replace(R.id.contenedor, new ContatoFragment()).commit();
-        } else if (id == R.id.ajuda) {
+        } else  if (id == R.id.ajuda) {
             fragmantManager.beginTransaction().replace(R.id.contenedor, new AjudaFragment()).commit();
         } else if (id == R.id.conta) {
             fragmantManager.beginTransaction().replace(R.id.contenedor, new ContaFragment()).commit();
@@ -109,6 +106,12 @@ public class MenuLateralActivity extends AppCompatActivity
             startActivity(intent);
         }
 
+//        if (id == R.id.contato) {
+//            fragmantManager.beginTransaction().replace(R.id.contenedor, new ContatoFragment()).commit();
+//        } else
+//        if (id == R.id.updates) {
+//            fragmantManager.beginTransaction().replace(R.id.contenedor, new UpdatesFragment()).commit();
+//        } else
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
